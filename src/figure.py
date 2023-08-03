@@ -1,6 +1,10 @@
+class ImpossibleFigureError(ValueError):
+    pass
+
+
 class Figure:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
+        self.name = self.__class__.__name__
 
     def validate_args(self, *args):
         raise NotImplementedError
@@ -8,7 +12,7 @@ class Figure:
     @staticmethod
     def validate_figure(figure):
         if not isinstance(figure, Figure):
-            raise ValueError(f'Incorrect class passed. {figure.name} is not {Figure.__name__}')
+            raise ValueError(f'Incorrect class passed. {figure.__class__.__name__} is not {Figure.__name__}')
 
     @property
     def area(self):

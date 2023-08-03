@@ -1,7 +1,7 @@
 import pytest
 
 from src.circle import Circle
-from src.figure import Figure
+from src.figure import Figure, ImpossibleFigureError
 
 
 def test_circle_init(create_circle):
@@ -36,13 +36,13 @@ def test_circle_add_triangle_area(create_circle, create_triangle):
     assert create_circle.add_area(create_triangle) == 207
 
 
-def test_circle_correct_radius(create_circle):
-    with pytest.raises(ValueError):
-        Circle(radius=10)
+def test_create_circle_bad_radius():
+    with pytest.raises(ImpossibleFigureError):
+        Circle(radius=-13)
 
 
 def test_circle_zero_radius(create_circle):
-    with pytest.raises(ValueError):
+    with pytest.raises(ImpossibleFigureError):
         Circle(radius=0)
 
 

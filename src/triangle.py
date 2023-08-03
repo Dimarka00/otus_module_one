@@ -1,9 +1,9 @@
-from src.figure import Figure
+from src.figure import Figure, ImpossibleFigureError
 
 
 class Triangle(Figure):
-    def __init__(self, side_a, side_b, side_c, name):
-        super().__init__(name)
+    def __init__(self, side_a, side_b, side_c):
+        super().__init__()
         self.validate_args(side_a=side_a, side_b=side_b, side_c=side_c)
         self.__side_a = side_a
         self.__side_b = side_b
@@ -11,7 +11,7 @@ class Triangle(Figure):
 
     def validate_args(self, side_a: float, side_b: float, side_c: float):
         if not all([side_a + side_b > side_c, side_b + side_c > side_a, side_c + side_a > side_b]):
-            raise ValueError(f'Cannot create {self.name} with sides: {side_a, side_b, side_c}')
+            raise ImpossibleFigureError(f'Cannot create {self.__class__.__name__} with sides: {side_a, side_b, side_c}')
 
     @property
     def area(self) -> float:
@@ -25,5 +25,5 @@ class Triangle(Figure):
         return sum([self.__side_a, self.__side_b, self.__side_c])
 
 
-t = Triangle(3, 4, 5, 'Triangle')
+t = Triangle(3, 4, 5)
 print(t.area)

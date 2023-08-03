@@ -1,17 +1,17 @@
 import math
 
-from src.figure import Figure
+from src.figure import Figure, ImpossibleFigureError
 
 
 class Circle(Figure):
-    def __init__(self, radius, name):
-        super().__init__(name)
+    def __init__(self, radius):
+        super().__init__()
         self.validate_args(radius=radius)
         self.__radius = radius
 
     def validate_args(self, radius):
         if radius <= 0:
-            raise ValueError(f'Can not create {self.name} with radius {radius}')
+            raise ImpossibleFigureError(f'Can not create {self.__class__.__name__} with radius {radius}')
 
     @property
     def area(self) -> float:
@@ -22,7 +22,7 @@ class Circle(Figure):
         return round(2 * math.pi * self.__radius)
 
 
-c = Circle(8, 'Circle')
+c = Circle(8)
 print(c.area)
 print(c.perimeter)
 
