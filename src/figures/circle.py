@@ -1,6 +1,6 @@
 import math
 
-from src.figure import Figure, ImpossibleFigureError
+from src.figures.figure import Figure, ImpossibleFigureError
 
 
 class Circle(Figure):

@@ -1,7 +1,7 @@
 import pytest
 
-from src.circle import Circle
-from src.figure import Figure, ImpossibleFigureError
+from src.figures.circle import Circle
+from src.figures.figure import Figure, ImpossibleFigureError
 
 
 def test_circle_init(create_circle):
